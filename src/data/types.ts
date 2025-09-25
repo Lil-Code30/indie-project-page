@@ -3,7 +3,6 @@ export interface Project {
   id: string;
   title: string;
   description: string;
-  shortDescription?: string;
 
   // Technical Details
   technologies: string[];
@@ -13,7 +12,9 @@ export interface Project {
     | "Backend"
     | "Mobile"
     | "CLI"
+    | "API"
     | "Learning"
+    | "Package"
     | "Experimental";
   difficulty: "Beginner" | "Intermediate" | "Advanced";
 
@@ -22,10 +23,7 @@ export interface Project {
   codeUrl: string;
 
   // Media
-  images: {
-    thumbnail: string;
-    screenshots?: string[];
-  };
+  thumbnail: string;
 
   status: "Completed" | "In Progress" | "Paused" | "Archived";
   features: string[];
