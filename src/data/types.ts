@@ -12,6 +12,7 @@ export interface Project {
     | "Backend"
     | "Mobile"
     | "CLI"
+    | "Game"
     | "API"
     | "Learning"
     | "Package"
