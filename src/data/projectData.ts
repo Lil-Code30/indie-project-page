@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 export const projects: Project[] = [
   {
     id: uuidv4(),
-    title: "Timora – Event Planning & Synchronization SaaS",
+    title: "Timora – Event Planning",
     description:
       "A web application for creating, managing, and synchronizing events with Google Calendar. Designed for students and professionals seeking simplified scheduling.",
     technologies: [

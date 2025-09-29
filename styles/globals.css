@@ -140,5 +140,202 @@
   }
   body {
     @apply bg-background text-foreground;
+    background: linear-gradient(135deg, #f5e6d3 0%, #ede0d0 100%);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #2c1810;
+    min-height: 100vh;
   }
+}
+
+/* Custom Book Theme Styles */
+:root {
+  --warm-bg: #f5e6d3;
+  --warm-card: #ffffff;
+  --warm-orange: #ff6b35;
+  --warm-orange-light: #ff8c66;
+  --warm-text: #2c1810;
+  --warm-text-secondary: #5d4e37;
+  --warm-border: #e0d0c0;
+  --warm-hover: #f0e0d0;
+  --warm-accent: #8b4513;
+}
+
+.book-card {
+  background: var(--warm-card);
+  border: 1px solid var(--warm-border);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(139, 69, 19, 0.1);
+  transition: all 0.3s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(139, 69, 19, 0.15);
+  border-color: var(--warm-orange-light);
+}
+
+.btn-primary {
+  background: var(--warm-orange);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--warm-orange-light);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--warm-orange);
+  border: 1px solid var(--warm-orange);
+  padding: 7px 15px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: var(--warm-orange);
+  color: white;
+}
+
+.pagination-btn {
+  background: var(--warm-card);
+  border: 1px solid var(--warm-border);
+  color: var(--warm-text);
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  min-width: 40px;
+}
+
+.pagination-btn:hover {
+  background: var(--warm-hover);
+  border-color: var(--warm-orange);
+}
+
+.pagination-btn.active {
+  background: var(--warm-orange);
+  color: white;
+  border-color: var(--warm-orange);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sidebar {
+  background: linear-gradient(180deg, var(--warm-card) 0%, #faf5f0 100%);
+  border-right: 1px solid var(--warm-border);
+}
+
+.status-completed {
+  background: #d4edda;
+  color: #155724;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.status-in-progress {
+  background: #fff3cd;
+  color: #856404;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.status-paused {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.status-archived {
+  background: #e2e3e5;
+  color: #495057;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.difficulty-beginner {
+  background: #d1ecf1;
+  color: #0c5460;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.difficulty-intermediate {
+  background: #fff3cd;
+  color: #856404;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.difficulty-advanced {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Social Media Platform Colors */
+.hover\:bg-instagram:hover {
+  background-color: #fdf2f8;
+}
+.hover\:bg-linkedin:hover {
+  background-color: #eff6ff;
+}
+.hover\:bg-youtube:hover {
+  background-color: #fef2f2;
+}
+.hover\:bg-twitter:hover {
+  background-color: #f0f9ff;
+}
+.hover\:bg-twitch:hover {
+  background-color: #faf5ff;
+}
+.hover\:bg-github:hover {
+  background-color: #f9fafb;
+}
+
+.text-instagram {
+  color: #e1306c;
+}
+.text-linkedin {
+  color: #0077b5;
+}
+.text-youtube {
+  color: #ff0000;
+}
+.text-twitter {
+  color: #1da1f2;
+}
+.text-twitch {
+  color: #9146ff;
+}
+.text-github {
+  color: #333333;
 }

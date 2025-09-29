@@ -1,0 +1,13 @@
+{
+  "builds": [
+    {
+      "src": "index.ts"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "index.ts"
+    }
+  ]
+}
