@@ -1,13 +1,7 @@
 {
-  "builds": [
-    {
-      "src": "index.ts"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "index.ts"
-    }
-  ]
+  "buildCommand": "bun run build.ts",
+  "outputDirectory": "dist",
+  "installCommand": "bun install",
+  "framework": null,
+  "public": true
 }

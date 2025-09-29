@@ -1,0 +1,12 @@
+[build]
+  command = "bun run build.ts"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Redirections pour SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -30,7 +30,16 @@ function ProjectCard({ project }: ProjectCardProps) {
           alt={title}
           className="w-full h-32 sm:h-40 object-cover rounded-lg border border-gray-200"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = "/api/placeholder/300/160";
+            const target = e.target as HTMLImageElement;
+            // Fallback to a placeholder image
+            target.src = `data:image/svg+xml;base64,${btoa(`
+              <svg width="300" height="160" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100%" height="100%" fill="#f3f4f6"/>
+                <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="#9ca3af" font-family="Arial, sans-serif" font-size="14">
+                  Image non disponible
+                </text>
+              </svg>
+            `)}`;
           }}
         />
         <div className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 flex gap-2">
