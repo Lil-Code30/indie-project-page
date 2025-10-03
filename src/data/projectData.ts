@@ -76,7 +76,7 @@ export const projects: Project[] = [
     codeUrl: "https://github.com/Lil-Code30/dripOndrip-dashboard",
     demoUrl: "https://drip-ondrip-dashboard.vercel.app/",
     thumbnail: "/images/projects/drip-ondrip-dashboard.png",
-    status: "In Progress",
+    status: "Paused",
     features: [
       "User Authentication: Secure login for administrators.",
       "Dashboard Overview: Key metrics and statistics at a glance.",
@@ -155,7 +155,7 @@ export const projects: Project[] = [
     codeUrl: "https://github.com/Lil-Code30/drip-on-drip_e-com_backend",
     demoUrl: "https://drip-on-drip-e-com-backend.onrender.com/api/v1/products",
     thumbnail: "/images/projects/drip-on-drip-e-com-backend.png",
-    status: "In Progress",
+    status: "Paused",
     features: [
       "User Authentication: Secure user registration and login using JWT (JSON Web Tokens).",
       "Product Management: CRUD operations for managing products, including adding, updating, and deleting products.",
