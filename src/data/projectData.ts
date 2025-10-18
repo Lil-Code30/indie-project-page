@@ -22,7 +22,7 @@ export const projects: Project[] = [
     codeUrl: "https://github.com/Lil-Code30/timora",
     // demoUrl: "https://www.npmjs.com/package/timora",
     thumbnail: "/images/projects/timora.png",
-    status: "In Progress",
+    status: "Paused",
     features: [
       "Event Creation: Easily create and manage events.",
       "Event Synchronization: Sync events with Google Calendar.",
