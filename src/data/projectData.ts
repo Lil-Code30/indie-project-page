@@ -4,6 +4,38 @@ import { v4 as uuidv4 } from "uuid";
 export const projects: Project[] = [
   {
     id: uuidv4(),
+    title: " AcadXP",
+    description:
+      "Transform your academic journey into an engaging, gamified experience! Track your progress, visualize your skills, and level up through your degree with this comprehensive academic progress tracker.",
+    technologies: [
+      "TypeScript",
+      "Next.js",
+      "TailwindCSS",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Neon",
+    ],
+    category: "Full-Stack",
+    difficulty: "Advanced",
+    codeUrl: "https://github.com/acadxp/acadxp",
+    demoUrl: "https://acadxp.vercel.app/",
+    thumbnail: "/images/projects/acadxp.png",
+    status: "In Progress",
+    features: [
+      "User Authentication: Secure login and registration system.",
+      "Academic Tracking: Monitor courses, grades, and credits.",
+      "Gamification: Earn points, badges, and level up based on academic performance.",
+      "Progress Visualization: Interactive charts and graphs to visualize academic progress.",
+      "Responsive Design: Mobile-friendly interface for all devices.",
+      "Notifications: Email reminders for upcoming deadlines and events.",
+      "User Profiles: Manage personal information and preferences.",
+      "Search and Filter: Quickly find courses and academic records.",
+      "Comprehensive Documentation: Clear documentation for setup and usage.",
+    ],
+  },
+  {
+    id: uuidv4(),
     title: "Timora – Event Planning",
     description:
       "A web application for creating, managing, and synchronizing events with Google Calendar. Designed for students and professionals seeking simplified scheduling.",
@@ -45,7 +77,7 @@ export const projects: Project[] = [
     codeUrl: "https://github.com/Lil-Code30/random-color-toolkit",
     demoUrl: "https://www.npmjs.com/package/random-color-toolkit",
     thumbnail: "/images/projects/random-color-toolkit.png",
-    status: "In Progress",
+    status: "Archived",
     features: [
       "Color Generation: Generate random colors in HEX, RGB, and HSL formats.",
       // "Color Conversion: Convert colors between HEX, RGB, and HSL formats.",
