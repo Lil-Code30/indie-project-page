@@ -54,7 +54,7 @@ export const projects: Project[] = [
     codeUrl: "https://github.com/Lil-Code30/timora",
     // demoUrl: "https://www.npmjs.com/package/timora",
     thumbnail: "/images/projects/timora.png",
-    status: "Paused",
+    status: "Archived",
     features: [
       "Event Creation: Easily create and manage events.",
       "Event Synchronization: Sync events with Google Calendar.",
@@ -77,7 +77,7 @@ export const projects: Project[] = [
     codeUrl: "https://github.com/Lil-Code30/random-color-toolkit",
     demoUrl: "https://www.npmjs.com/package/random-color-toolkit",
     thumbnail: "/images/projects/random-color-toolkit.png",
-    status: "Archived",
+    status: "Completed",
     features: [
       "Color Generation: Generate random colors in HEX, RGB, and HSL formats.",
       // "Color Conversion: Convert colors between HEX, RGB, and HSL formats.",
@@ -149,7 +149,7 @@ export const projects: Project[] = [
     codeUrl: "https://github.com/Lil-Code30/drip-on-drip_e-com",
     demoUrl: "https://drip-on-drip-v1.vercel.app/shop",
     thumbnail: "/images/projects/drip-on-drip-v1.png",
-    status: "Archived",
+    status: "Completed",
     features: [
       "Responsive Design: Mobile-friendly design using TailwindCSS.",
       "State Management: Efficient state management using React Query.",
@@ -187,7 +187,7 @@ export const projects: Project[] = [
     codeUrl: "https://github.com/Lil-Code30/drip-on-drip_e-com_backend",
     demoUrl: "https://drip-on-drip-e-com-backend.onrender.com/api/v1/products",
     thumbnail: "/images/projects/drip-on-drip-e-com-backend.png",
-    status: "Paused",
+    status: "Completed",
     features: [
       "User Authentication: Secure user registration and login using JWT (JSON Web Tokens).",
       "Product Management: CRUD operations for managing products, including adding, updating, and deleting products.",
