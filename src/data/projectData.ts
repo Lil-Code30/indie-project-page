@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 export const projects: Project[] = [
   {
     id: uuidv4(),
-    title: " AcadXP",
+    title: "AcadXP",
     description:
       "Transform your academic journey into an engaging, gamified experience! Track your progress, visualize your skills, and level up through your degree with this comprehensive academic progress tracker.",
     technologies: [
@@ -32,6 +32,64 @@ export const projects: Project[] = [
       "User Profiles: Manage personal information and preferences.",
       "Search and Filter: Quickly find courses and academic records.",
       "Comprehensive Documentation: Clear documentation for setup and usage.",
+    ],
+  },
+  {
+    id: uuidv4(),
+    title: "DevKit",
+    description:
+      "Your all-in-one developer resource hub. Discover, use, and learn with premium APIs, UI components, templates, tools, tutorials, libraries and more.",
+    technologies: ["TypeScript", "Next.js", "supabase", "TailwindCSS"],
+    category: "Full-Stack",
+    difficulty: "Intermediate",
+    codeUrl: "https://github.com/DevKit-Org",
+    demoUrl: "https://devkit.dripcodestudio.com/",
+    thumbnail: "/images/projects/devkit.png",
+    status: "In Progress",
+    features: [
+      "Find Resources: Browse and search a wide range of developer resources.",
+      "Search and Filter: Easily find resources by category, technology, or popularity.",
+      "Submit Resources: Contribute your own resources to the community.",
+      "Responsive Design: Mobile-friendly interface for all devices.",
+    ],
+  },
+  {
+    id: uuidv4(),
+    title: "AfroChef",
+    description:
+      "Discover and share authentic African recipes with AfroChef! This platform celebrates the rich culinary heritage of Africa, allowing users to explore traditional dishes, share their own recipes, and connect with a community of food enthusiasts.",
+    technologies: ["TypeScript", "Next.js", "supabase", "TailwindCSS"],
+    category: "Full-Stack",
+    difficulty: "Advanced",
+    codeUrl: "https://github.com/DripCode-Studio/afro-chef",
+    demoUrl: "https://afrochef.dripcodestudio.com/",
+    thumbnail: "/images/projects/afrochef.png",
+    status: "Completed",
+    features: [
+      "User Authentication: Secure login and registration system.",
+      "Recipe Management: Add, edit, and delete recipes with detailed instructions and images.",
+      "Search and Filter: Easily find recipes by ingredients, cuisine, or dietary preferences.",
+      "Adaptive Recipes: Adjust ingredient quantities based on serving size.",
+      "AI-Powered Suggestions: Get recipe recommendations based on your preferences and past interactions.",
+    ],
+  },
+  {
+    id: uuidv4(),
+    title: "LedgerYear",
+    description:
+      "LedgerYear is a comprehensive personal finance management application designed to help users track their income, expenses, and savings goals. With an intuitive interface and powerful features, LedgerYear empowers users to take control of their financial health and make informed decisions.",
+    technologies: ["TypeScript", "Next.js", "supabase", "TailwindCSS"],
+    category: "Full-Stack",
+    difficulty: "Advanced",
+    codeUrl: "https://github.com/DripCode-Studio/ledger-year",
+    demoUrl: "https://ledgeryear.dripcodestudio.com/",
+    thumbnail: "/images/projects/ledgeryear.png",
+    status: "Completed",
+    features: [
+      "User Authentication: Secure login and registration system.",
+      "Expense Tracking: Add, edit, and delete income and expense entries with categories and tags.",
+      "Budget Management: Set monthly budgets and track spending against them.",
+      "Viewualization: Interactive charts and graphs to visualize financial data.",
     ],
   },
   {
