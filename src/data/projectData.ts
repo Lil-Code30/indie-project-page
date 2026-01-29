@@ -45,7 +45,7 @@ export const projects: Project[] = [
     codeUrl: "https://github.com/DevKit-Org",
     demoUrl: "https://devkit.dripcodestudio.com/",
     thumbnail: "/images/projects/devkit.png",
-    status: "In Progress",
+    status: "Completed",
     features: [
       "Find Resources: Browse and search a wide range of developer resources.",
       "Search and Filter: Easily find resources by category, technology, or popularity.",
