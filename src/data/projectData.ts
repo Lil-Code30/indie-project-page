@@ -36,6 +36,26 @@ export const projects: Project[] = [
   },
   {
     id: uuidv4(),
+    title: "Portfolio Personnel v4",
+    description:
+      "This is the fourth version of my personal portfolio, built with modern web technologies. It showcases my skills, projects, and experience as a web developer.",
+    technologies: ["HTML", "TypeScript", "NextJS", "TailwindCSS", "Shadcn/ui"],
+    category: "Frontend",
+    difficulty: "Beginner",
+    codeUrl: "https://github.com/Lil-Code30/ismael-loko",
+    demoUrl: "https://ismaelloko.dripcodestudio.com/",
+    thumbnail: "/images/projects/ismael-loko.png",
+    status: "Completed",
+    features: [
+      "Responsive Design: The portfolio is fully responsive and works on all devices.",
+      "Modern UI: The UI is built with Shadcn/ui components, providing a clean and modern look. ",
+      "GitHub Contribution grid",
+      "Component-Based Architecture: The codebase is organized into reusable components, making it easy to maintain and scale.",
+      "Responsive Navigation: A responsive navigation bar that adapts to different screen sizes.",
+    ],
+  },
+  {
+    id: uuidv4(),
     title: "DevKit",
     description:
       "Your all-in-one developer resource hub. Discover, use, and learn with premium APIs, UI components, templates, tools, tutorials, libraries and more.",
