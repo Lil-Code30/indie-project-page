@@ -293,7 +293,7 @@ export const projects: Project[] = [
     category: "Frontend",
     difficulty: "Beginner",
     codeUrl: "https://github.com/Lil-Code30/who-am-i",
-    demoUrl: "https://ismaellokov2.vercel.app/",
+    demoUrl: "https://who-is-ismael.vercel.app/",
     thumbnail: "/images/projects/who-am-i.png",
     status: "Completed",
     features: [
