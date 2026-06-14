@@ -111,8 +111,8 @@ const ProfileSidebar: React.FC<ProfileSidebarProps> = ({ onClose }) => {
           Full-Stack Developer
         </p>
         <p className="text-xs sm:text-sm text-gray-600 leading-relaxed px-2">
-          Passionate about building exceptional digital experiences with modern
-          web technologies.
+          Passionate about building things — from web and mobile apps to
+          whatever else I can dream up.
         </p>
       </div>
 

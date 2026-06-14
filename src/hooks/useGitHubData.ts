@@ -87,7 +87,8 @@ export const useGitHubData = () => {
   }, []);
 
   const refreshData = async () => {
-    // Clear cache and refetch
+    // Clear caches and refetch
+    GitHubService.clearCache();
     localStorage.removeItem(GITHUB_STATS_CACHE_KEY);
     localStorage.removeItem(GITHUB_LANGUAGES_CACHE_KEY);
 

@@ -87,13 +87,12 @@ export function App() {
         {/* Header Section */}
         <div className="text-center mb-8 sm:mb-12 mt-12 lg:mt-0">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
-            <span>My Web Development Journey</span>
+            <span>My Project Archive</span>
             <Rocket size={28} className="text-orange-600 sm:w-9 sm:h-9" />
           </h1>
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto px-4">
-            A collection of all the projects I've built throughout my web
-            development journey. From simple websites to complex full-stack
-            applications.
+            Every project I've ever built — web apps, mobile apps, school
+            assignments, personal experiments, and everything in between.
           </p>
         </div>
 

@@ -1,17 +1,17 @@
-# My Web Development Journey 🚀
+# My Project Archive 🚀
 
-A comprehensive portfolio showcasing all the projects I've built throughout my web development journey. From my first "Hello World" to complex applications, this collection represents my growth and learning as a developer.
+A comprehensive portfolio showcasing all the projects I've ever built. From web apps to mobile apps, school assignments to personal passion builds — this collection represents my growth and learning as a builder.
 
 ## 🎯 What's Inside
 
-This portfolio contains all the projects I've ever built since I started web development, including:
+This archive contains every project I've ever made, including:
 
-- Early learning projects and experiments
-- Frontend applications and components
-- Full-stack applications
-- API integrations and data-driven projects
+- Web development projects (frontend, backend, full-stack)
+- Mobile and desktop applications
+- School and university assignments
 - Personal projects and passion builds
-- Learning exercises and tutorials
+- Experiments, prototypes, and learning exercises
+- Open source contributions
 
 ## 🛠️ Built With
 

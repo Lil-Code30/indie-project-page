@@ -29,7 +29,6 @@ export interface GitHubUser {
 const GITHUB_USERNAME = "Lil-Code30";
 const GITHUB_API_BASE = "https://api.github.com";
 
-// Language colors mapping (GitHub's official colors)
 const LANGUAGE_COLORS: { [key: string]: string } = {
   JavaScript: "#f1e05a",
   TypeScript: "#3178c6",
@@ -54,9 +53,15 @@ const LANGUAGE_COLORS: { [key: string]: string } = {
 };
 
 export class GitHubService {
-  private static async fetchWithErrorHandling(url: string): Promise<any> {
+  private static reposCache: { data: any[]; timestamp: number } | null = null;
+  private static readonly CACHE_DURATION = 2 * 60 * 1000;
+
+  private static async fetchWithErrorHandling(
+    url: string,
+    headers?: Record<string, string>,
+  ): Promise<any> {
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, { headers });
       if (!response.ok) {
         throw new Error(`GitHub API Error: ${response.status}`);
       }
@@ -69,53 +74,84 @@ export class GitHubService {
 
   static async fetchUserData(): Promise<GitHubUser | null> {
     return this.fetchWithErrorHandling(
-      `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}`
+      `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}`,
     );
   }
 
-  static async fetchUserRepos(): Promise<any[] | null> {
-    const repos = await this.fetchWithErrorHandling(
-      `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`
-    );
-    return repos || [];
+  static clearCache(): void {
+    this.reposCache = null;
+  }
+
+  static async fetchUserRepos(): Promise<any[]> {
+    if (
+      this.reposCache &&
+      Date.now() - this.reposCache.timestamp < this.CACHE_DURATION
+    ) {
+      return this.reposCache.data;
+    }
+
+    const repos: any[] = [];
+    let url: string | null =
+      `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`;
+
+    while (url) {
+      try {
+        const response: Response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`GitHub API error: ${response.status}`);
+        }
+        const data: any[] = await response.json();
+        repos.push(...data);
+
+        const linkHeader: string | null = response.headers.get("Link");
+        url = null;
+        if (linkHeader) {
+          for (const link of linkHeader.split(",")) {
+            if (link.includes('rel="next"')) {
+              const match: RegExpMatchArray | null = link.match(/<([^>]+)>/);
+              if (match && match[1]) url = match[1];
+              break;
+            }
+          }
+        }
+      } catch (error) {
+        console.error("GitHub API fetch error:", error);
+        break;
+      }
+    }
+
+    this.reposCache = { data: repos, timestamp: Date.now() };
+    return repos;
   }
 
   static async fetchLanguagesData(): Promise<GitHubLanguage[]> {
     try {
       const repos = await this.fetchUserRepos();
-      if (!repos || repos.length === 0) {
+      if (repos.length === 0) {
         return this.getFallbackLanguages();
       }
 
       const languageStats: { [key: string]: number } = {};
       let totalBytes = 0;
 
-      // Fetch languages for each repository
-      for (const repo of repos.slice(0, 20)) {
-        // Limit to avoid rate limiting
-        if (repo.language) {
-          const langData = await this.fetchWithErrorHandling(
-            repo.languages_url
-          );
-          if (langData) {
-            Object.entries(langData).forEach(([lang, bytes]) => {
-              languageStats[lang] =
-                (languageStats[lang] || 0) + (bytes as number);
-              totalBytes += bytes as number;
-            });
-          }
+      for (const repo of repos) {
+        const langData = await this.fetchWithErrorHandling(repo.languages_url);
+        if (langData) {
+          Object.entries(langData).forEach(([lang, bytes]) => {
+            languageStats[lang] =
+              (languageStats[lang] || 0) + (bytes as number);
+            totalBytes += bytes as number;
+          });
         }
       }
 
-      // Convert to percentages and sort
       const languages = Object.entries(languageStats)
         .map(([name, bytes]) => ({
           name,
           percentage: (bytes / totalBytes) * 100,
           color: LANGUAGE_COLORS[name] || "#8cc8ff",
         }))
-        .sort((a, b) => b.percentage - a.percentage)
-        .slice(0, 6); // Top 6 languages
+        .sort((a, b) => b.percentage - a.percentage);
 
       return languages.length > 0 ? languages : this.getFallbackLanguages();
     } catch (error) {
@@ -131,28 +167,28 @@ export class GitHubService {
         this.fetchUserRepos(),
       ]);
 
-      if (!userData || !repos) {
+      if (!userData) {
         return this.getFallbackStats();
       }
 
-      // Calculate total stars from all repositories
       const totalStars = repos.reduce(
         (sum: number, repo: any) => sum + (repo.stargazers_count || 0),
-        0
+        0,
       );
 
-      // Get unique repositories the user has contributed to (forks indicate contributions)
       const contributedRepos = repos.filter((repo: any) => repo.fork).length;
 
-      // For commits, we'll use a rough estimate based on recent activity
-      // In a real implementation, you might want to use the GitHub GraphQL API for more accurate data
-      const totalCommits = Math.floor(Math.random() * 500) + 1000; // Placeholder - would need GraphQL API for accuracy
+      const [totalPRs, totalIssues, totalCommits] = await Promise.all([
+        this.fetchTotalPRs(),
+        this.fetchTotalIssues(),
+        this.fetchTotalCommits(),
+      ]);
 
       return {
         totalStars,
         totalCommits,
-        totalPRs: Math.floor(Math.random() * 20) + 5, // Would need search API for accurate count
-        totalIssues: Math.floor(Math.random() * 5), // Would need search API for accurate count
+        totalPRs,
+        totalIssues,
         contributedRepos,
         publicRepos: userData.public_repos,
         followers: userData.followers,
@@ -162,6 +198,28 @@ export class GitHubService {
       console.error("Error fetching GitHub stats:", error);
       return this.getFallbackStats();
     }
+  }
+
+  private static async fetchTotalPRs(): Promise<number> {
+    const data = await this.fetchWithErrorHandling(
+      `${GITHUB_API_BASE}/search/issues?q=author:${GITHUB_USERNAME}+type:pr`,
+    );
+    return data?.total_count ?? 0;
+  }
+
+  private static async fetchTotalIssues(): Promise<number> {
+    const data = await this.fetchWithErrorHandling(
+      `${GITHUB_API_BASE}/search/issues?q=author:${GITHUB_USERNAME}+type:issue`,
+    );
+    return data?.total_count ?? 0;
+  }
+
+  private static async fetchTotalCommits(): Promise<number> {
+    const data = await this.fetchWithErrorHandling(
+      `${GITHUB_API_BASE}/search/commits?q=author:${GITHUB_USERNAME}`,
+      { Accept: "application/vnd.github.cloak-preview" },
+    );
+    return data?.total_count ?? 0;
   }
 
   private static getFallbackStats(): GitHubStats {
