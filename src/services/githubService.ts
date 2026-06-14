@@ -54,9 +54,12 @@ const LANGUAGE_COLORS: { [key: string]: string } = {
 };
 
 export class GitHubService {
-  private static async fetchWithErrorHandling(url: string): Promise<any> {
+  private static async fetchWithErrorHandling(
+    url: string,
+    headers?: Record<string, string>
+  ): Promise<any> {
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, { headers });
       if (!response.ok) {
         throw new Error(`GitHub API Error: ${response.status}`);
       }
@@ -144,15 +147,17 @@ export class GitHubService {
       // Get unique repositories the user has contributed to (forks indicate contributions)
       const contributedRepos = repos.filter((repo: any) => repo.fork).length;
 
-      // For commits, we'll use a rough estimate based on recent activity
-      // In a real implementation, you might want to use the GitHub GraphQL API for more accurate data
-      const totalCommits = Math.floor(Math.random() * 500) + 1000; // Placeholder - would need GraphQL API for accuracy
+      const [totalPRs, totalIssues, totalCommits] = await Promise.all([
+        this.fetchTotalPRs(),
+        this.fetchTotalIssues(),
+        this.fetchTotalCommits(),
+      ]);
 
       return {
         totalStars,
         totalCommits,
-        totalPRs: Math.floor(Math.random() * 20) + 5, // Would need search API for accurate count
-        totalIssues: Math.floor(Math.random() * 5), // Would need search API for accurate count
+        totalPRs,
+        totalIssues,
         contributedRepos,
         publicRepos: userData.public_repos,
         followers: userData.followers,
@@ -162,6 +167,28 @@ export class GitHubService {
       console.error("Error fetching GitHub stats:", error);
       return this.getFallbackStats();
     }
+  }
+
+  private static async fetchTotalPRs(): Promise<number> {
+    const data = await this.fetchWithErrorHandling(
+      `${GITHUB_API_BASE}/search/issues?q=author:${GITHUB_USERNAME}+type:pr`
+    );
+    return data?.total_count ?? 0;
+  }
+
+  private static async fetchTotalIssues(): Promise<number> {
+    const data = await this.fetchWithErrorHandling(
+      `${GITHUB_API_BASE}/search/issues?q=author:${GITHUB_USERNAME}+type:issue`
+    );
+    return data?.total_count ?? 0;
+  }
+
+  private static async fetchTotalCommits(): Promise<number> {
+    const data = await this.fetchWithErrorHandling(
+      `${GITHUB_API_BASE}/search/commits?q=author:${GITHUB_USERNAME}`,
+      { Accept: "application/vnd.github.cloak-preview" }
+    );
+    return data?.total_count ?? 0;
   }
 
   private static getFallbackStats(): GitHubStats {
